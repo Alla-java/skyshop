@@ -58,20 +58,7 @@ public class StorageService {
         return articleStorage;
     }
 
-    // ..Методы для добавления продуктов и статей в хранилища
-    public void addProduct(Product product) {
-        if (product != null) {
-            productStorage.put(product.getId(), product);
-        }
-    }
-
-    public void addArticle(Article article) {
-        if (article != null) {
-            articleStorage.put(article.getId(), article);
-        }
-    }
-
-    // ..Методы для получения продукта и статьи по UUID
+    // Методы для получения продукта и статьи по UUID
     public Product getProduct(UUID id) {
         return productStorage.get(id);
     }
@@ -87,15 +74,6 @@ public class StorageService {
 
     public Map<UUID, Article> getAllArticles() {
         return articleStorage;
-    }
-
-    // ..Пример методов для удаления продуктов и статей
-    public void removeProduct(UUID id) {
-        productStorage.remove(id);
-    }
-
-    public void removeArticle(UUID id) {
-        articleStorage.remove(id);
     }
 
     // Метод для получения объединенной коллекции всех объектов Searchable (продуктов и статей)
