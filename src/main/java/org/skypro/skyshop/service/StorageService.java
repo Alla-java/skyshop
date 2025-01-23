@@ -1,9 +1,6 @@
 package org.skypro.skyshop.service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -83,5 +80,9 @@ public class StorageService {
                 productStorage.values().stream(),    // Поток продуктов
                 articleStorage.values().stream()     // Поток статей
         ).collect(Collectors.toList());           // Собираем в список
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(productStorage.get(id));
     }
 }
