@@ -12,7 +12,7 @@ public final class UserBasket {
 
         // Считаем общую стоимость корзины с использованием StreamAPI
         this.total = basketItems.stream()
-                .mapToDouble(BasketItem::getTotalPrice)  // Преобразуем каждый элемент корзины в его стоимость
+                .mapToDouble(p -> p.getProduct().getPriceProduct() * p.getQuantity()) // Преобразуем каждый элемент корзины в его стоимость
                 .sum();                                 // Суммируем все стоимости
     }
 

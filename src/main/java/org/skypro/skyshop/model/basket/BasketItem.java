@@ -23,17 +23,4 @@ public final class BasketItem {
     public int getQuantity() {
         return quantity;
     }
-
-    // Метод для получения стоимости товара с учетом типа продукта
-    public double getTotalPrice() {
-        // В зависимости от типа продукта вычисляем цену
-        if (product instanceof DiscountedProduct) {
-            return ((DiscountedProduct) product).getPriceProduct() * quantity;
-        } else if (product instanceof FixPriceProduct) {
-            return ((FixPriceProduct) product).getPriceProduct() * quantity;
-        } else if (product instanceof SimpleProduct) {
-            return ((SimpleProduct) product).getPriceProduct() * quantity;
-        }
-        return 0; // Если продукт не из этих типов, возвращаем 0
-    }
 }
