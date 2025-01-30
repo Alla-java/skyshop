@@ -30,12 +30,26 @@ public class StorageService {
         fillArticleStorage(); //метод для заполнения хранилища статей
     }
 
-    // Приватный метод для заполнения хранилища продуктов
+    //Приватный метод для заполнения хранилища продуктов
+   // private void fillProductStorage() {
+    //    productStorage.put(UUID.randomUUID(), new SimpleProduct("Помидоры на ветке", 229));
+    //    productStorage.put(UUID.randomUUID(), new DiscountedProduct("Огурцы", 123,10)); // 10% скидка
+    //    productStorage.put(UUID.randomUUID(), new SimpleProduct("Куриное филе", 329));
+     //   productStorage.put(UUID.randomUUID(), new FixPriceProduct("Фарш говяжий"));
+   // }
+
     private void fillProductStorage() {
-        productStorage.put(UUID.randomUUID(), new SimpleProduct("Помидоры на ветке", 229));
-        productStorage.put(UUID.randomUUID(), new DiscountedProduct("Огурцы", 123,10)); // 10% скидка
-        productStorage.put(UUID.randomUUID(), new SimpleProduct("Куриное филе", 329));
-        productStorage.put(UUID.randomUUID(), new FixPriceProduct("Фарш говяжий"));
+
+        Product productTomatoes = new SimpleProduct("Помидоры на ветке", 229);
+        Product productСucumbers = new DiscountedProduct("Огурцы", 123, 10);
+        Product productСhicken = new SimpleProduct("Куриное филе", 329);
+        Product productFarsh = new FixPriceProduct("Фарш говяжий");
+
+        // Добавляем продукты с зафиксированными UUID
+        productStorage.put(productTomatoes.getId(),productTomatoes);
+        productStorage.put(productСucumbers.getId(),productСucumbers);
+        productStorage.put(productСhicken.getId(),productСhicken);
+        productStorage.put(productFarsh.getId(),productFarsh);
     }
 
     // Приватный метод для заполнения хранилища статей

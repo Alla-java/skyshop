@@ -27,6 +27,9 @@ public class BasketService {
         // Получаем продукт из StorageService по ID
         Optional<Product> productOptional = storageService.getProductById(id);
 
+        // Логируем UUID продукта
+        System.out.println("По запросу ищем продукт с ID: " + id);
+
         // Если продукт не найден, выбрасываем исключение
         if (!productOptional.isPresent()) {
             throw new IllegalArgumentException("Product с таким id:" + id + "не найден");
