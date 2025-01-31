@@ -4,6 +4,7 @@ import org.skypro.skyshop.model.basket.BasketItem;
 import org.skypro.skyshop.model.basket.ProductBasket;
 import org.skypro.skyshop.model.basket.UserBasket;
 import org.skypro.skyshop.model.product.Product;
+import org.skypro.skyshop.service.exceptions.NoSuchProductException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class BasketService {
 
         // Если продукт не найден, выбрасываем исключение
         if (!productOptional.isPresent()) {
-            throw new IllegalArgumentException("Product с таким id:" + id + "не найден");
+            throw new NoSuchProductException("Product с таким id:" + id + "не найден");
         }
 
         // Добавляем продукт в корзину, если он найден
