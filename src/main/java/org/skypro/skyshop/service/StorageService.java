@@ -9,6 +9,7 @@ import org.skypro.skyshop.model.product.FixPriceProduct;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.SimpleProduct;
+import org.skypro.skyshop.service.exceptions.NoSuchProductException;
 import org.springframework.stereotype.Service;
 
 import org.skypro.skyshop.model.search.Searchable;
@@ -29,14 +30,6 @@ public class StorageService {
         fillProductStorage(); //метод для заполнения хранилища продуктов
         fillArticleStorage(); //метод для заполнения хранилища статей
     }
-
-    //Приватный метод для заполнения хранилища продуктов
-   // private void fillProductStorage() {
-    //    productStorage.put(UUID.randomUUID(), new SimpleProduct("Помидоры на ветке", 229));
-    //    productStorage.put(UUID.randomUUID(), new DiscountedProduct("Огурцы", 123,10)); // 10% скидка
-    //    productStorage.put(UUID.randomUUID(), new SimpleProduct("Куриное филе", 329));
-     //   productStorage.put(UUID.randomUUID(), new FixPriceProduct("Фарш говяжий"));
-   // }
 
     private void fillProductStorage() {
 
@@ -71,7 +64,12 @@ public class StorageService {
 
     // Методы для получения продукта и статьи по UUID
     public Product getProduct(UUID id) {
-        return productStorage.get(id);
+        // Проверяем, существует ли продукт с данным ID
+        Product product = productStorage.get(id);
+        if (product == null) {
+            throw new NoSuchProductException("Продукт с ID " + id + " не найден");
+        }
+        return product;
     }
 
     public Article getArticle(UUID id) {
@@ -97,6 +95,8 @@ public class StorageService {
     }
 
     public Optional<Product> getProductById(UUID id) {
-        return Optional.ofNullable(productStorage.get(id));
+        // Если продукт не найден, выбрасываем кастомное исключение NoSuchProductException
+        return Optional.ofNullable(Optional.ofNullable(productStorage.get(id))
+                .orElseThrow(() -> new NoSuchProductException("Продукт с ID " + id + " не найден")));
     }
 }
